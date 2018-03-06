@@ -48,8 +48,8 @@ class LearningAgent(Agent):
             self.epsilon = 0
             self.alpha = 0
         else:
-            self.epsilon = a ** self.trial
-            # self.epsilon = math.cos(math.pi/1500 * self.trial)
+            # self.epsilon = a ** self.trial
+            self.epsilon = math.cos(math.pi / 1500 * self.trial)
             # self.epsilon -= 0.05
 
         return None
@@ -81,11 +81,7 @@ class LearningAgent(Agent):
         ###########
         # Calculate the maximum Q-value of all actions for a given state
 
-        maxQ = None
-        for action, q in self.Q[state].iteritems():
-            if maxQ < q:
-                maxQ = q
-
+        maxQ = max(self.Q[state].values())
         return maxQ
 
     def createQ(self, state):
